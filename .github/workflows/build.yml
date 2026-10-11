@@ -10,10 +10,10 @@ jobs:
           distribution: temurin
           java-version: 21
       - run: |
-          unzip -o StrengthSMP.zip
-          cd StrengthSMP
+          unzip -o StrengthSMPv1.zip -d build
+          cd "$(dirname "$(find build -name pom.xml | head -1)")"
           mvn -B package
       - uses: actions/upload-artifact@v4
         with:
           name: StrengthSMP
-          path: StrengthSMP/target/*.jar
+          path: build/**/target/*.jar
